@@ -3,6 +3,27 @@ const btnText = document.getElementById('criar-carta');
 const paragraphText = document.getElementById('carta-gerada');
 const countParagraph = document.getElementById('carta-contador');
 
+// handleSwitch
+
+const handleSwitch = (classesGroup, arrClasses, span) => {
+  switch (classesGroup) {
+  case 0:
+    checkStyleCase(classesGroup, arrClasses, span);
+    break;
+  case 1:
+    checkSizeCase(classesGroup, arrClasses, span);
+    break;
+  case 2:
+    checkRotationCase(classesGroup, arrClasses, span);
+    break;
+  case 3:
+    checkSkewCase(classesGroup, arrClasses, span);
+    break;
+  default:
+    span.classList.add(arrClasses[classesGroup]);
+  }
+};
+
 // generate Classes
 
 const generateClasses = (span) => {
