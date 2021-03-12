@@ -1,5 +1,23 @@
+body {
+  margin-top: 200px;
+  text-align: center;
+}
+#carta-texto {
+  width: 50%;
+}
+
 #carta-contador {
   display: inline-block;
+}
+
+#carta-gerada {
+  margin: 0 auto;
+  width: 80%;
+  word-wrap: break-word;
+  line-height: 70px;
+}
+#carta-gerada span {
+  margin-right: 10px;
 }
 
 .newspaper {
