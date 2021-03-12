@@ -1,6 +1,7 @@
 const letterInput = document.querySelector('#carta-texto');
 const createBtn = document.querySelector('#criar-carta');
 const letterContainer = document.querySelector('#carta-gerada');
+const wordCounter = document.querySelector('#carta-contador');
 
 const styles = [
   'newspaper',
@@ -14,27 +15,16 @@ const styles = [
   'skewleft',
   'skewright',
 ];
-// const styles = ['newspaper', 'magazine1', 'magazine2'];
-// const sizes = ['medium', 'big', 'reallybig'];
-// const rotations = ['rotateleft', 'rotateright'];
-// const inclinations = ['skewleft', 'skewright'];
-function randomNumber(max) {
-  return Math.floor(Math.random()*max);
+
+function randomNum(max) {
+  return Math.floor(Math.random() * max);
 }
-// function randomClasses() {
-//   const classes = [];
-//   const style = styles[randomNumber(styles.length + 2)];
-//   const size = sizes[randomNumber(sizes.length + 2)];
-//   const rotation = rotations[randomNumber(rotations.length + 2)];
-//   const inclination = inclinations[randomNumber(rotations.length + 2)];
 
-//   if (style) classes.push(style);
-//   if (size) classes.push(size);
-//   if (rotation) classes.push(rotation);
-//   if (inclination) classes.push(inclination);
-
-//   return classes.join(' ');
-// }
+function randomClasses(element) {
+  const size = styles.length;
+  element.removeAttribute('class');
+  element.classList.add(styles[randomNum(size)], styles[randomNum(size)], styles[randomNum(size)]);
+}
 
 function createLetter() {
   letterContainer.innerHTML = '';
@@ -43,14 +33,14 @@ function createLetter() {
     letterContainer.innerHTML = 'Por favor, digite o conteúdo da carta.';
     return;
   }
-  // Esse é um teste!
   for (let i = 0; i < words.length; i += 1) {
     const word = document.createElement('span');
-    const size = styles.length;
-    word.classList.add(styles[randomNumber(size)], styles[randomNumber(size)], styles[randomNumber(size)]);
+    randomClasses(word);
     word.innerHTML = words[i];
+    word.addEventListener('click', () => randomClasses(word));
     letterContainer.appendChild(word);
   }
+  wordCounter.innerHTML = words.length;
 }
 
 window.onload = () => {

@@ -1,7 +1,11 @@
+#carta-contador {
+  display: inline-block;
+}
+
 .newspaper {
   background-color: antiquewhite;
-  font-family: 'Times New Roman', Times, serif;
-  font-weight: bold;
+  font-family: Times New Roman, Times, serif;
+  font-weight: 700;
 }
 
 .magazine1 {
