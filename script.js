@@ -136,3 +136,10 @@ inputText.addEventListener('keydown', (e) => {
     createLetter();
   }
 });
+
+paragraphText.addEventListener('click', (e) => {
+  if (e.target.nodeName === 'SPAN') {
+    e.target.className = '';
+    generateClasses(e.target);
+  }
+});
