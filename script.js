@@ -13,11 +13,11 @@ const getArrayFromString = (string) => string.split(' ');
 
 const setCreateLetterBtn = () => {
   createLetterBtn.addEventListener('click', () => {
+    generatedLetter.innerHTML = '';
     const phrase = createLetterText.value;
     getArrayFromString(phrase).forEach((word) => {
       const spanEl = document.createElement('span');
       spanEl.innerText = `${word}`;
-      spanEl.innerText = ' ';
       generatedLetter.appendChild(spanEl);
     });
   });
