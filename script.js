@@ -2,6 +2,7 @@
 const createLetterBtn = document.querySelector('#criar-carta');
 const createLetterText = document.querySelector('#carta-texto');
 const generatedLetter = document.querySelector('#carta-gerada');
+const wordCounter = document.querySelector('#carta-contador');
 
 //                     Aux Functions
 // split string
@@ -29,6 +30,15 @@ const getRandomIndexesFromArray = (array) => {
     }
   }
   return arrayMap;
+};
+
+//              Main functions
+
+// count amount of words created
+
+const countAmountOfWords = () => {
+  const amount = document.querySelectorAll('span').length;
+  wordCounter.innerText = amount;
 };
 
 // get random class
@@ -87,7 +97,10 @@ const genereteLetter = () => {
 // Create Letter Button Listener
 
 const setCreateLetterBtn = () => {
-  createLetterBtn.addEventListener('click', genereteLetter);
+  createLetterBtn.addEventListener('click', () => {
+    genereteLetter();
+    countAmountOfWords();
+  });
 };
 
 //                    Loader

@@ -12,7 +12,11 @@ body {
 
 }
 
-p {
+.counter {
+  margin-top: 10px;
+}
+
+.letter {
   margin-top: 50px;
   display: flex;
   flex-wrap: wrap;
