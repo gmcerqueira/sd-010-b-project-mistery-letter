@@ -15,9 +15,12 @@ const checkContent = (array) => {
 // get randomIndexes
 
 const getRandomIndexesFromArray = (array) => {
+  let mainValue = Math.floor(Math.random() * array.length);
+  if (!mainValue) mainValue = 1;
   const arrayMap = {
-    main: Math.floor(Math.random() * array.length),
+    main: mainValue,
   };
+  console.log(arrayMap.main);
   for (let index = 0; index < array.length; index += 1) {
     if (typeof (array[index]) === 'object') {
       arrayMap[`sub${index}`] = Math.floor(Math.random() * array[index].length);
@@ -39,9 +42,21 @@ const getRandomClass = () => {
   const randomIndexes = getRandomIndexesFromArray(group);
   let allClassList = '';
   for (let index = 0; index <= randomIndexes.main; index += 1) {
-    allClassList += `${group[index][randomIndexes[`sub${index}`]]} `;
+    if (index !== randomIndexes.main) {
+      allClassList += `${group[index][randomIndexes[`sub${index}`]]}`;
+      allClassList += ' ';
+    } else {
+      allClassList += `${group[index][randomIndexes[`sub${index}`]]}`;
+    }
   }
   return allClassList;
+};
+
+// changeStyle on click
+
+const changeStyle = (event) => {
+  const newClassSet = getRandomClass();
+  event.target.setAttribute('class', newClassSet);
 };
 
 // Generate Misterious Letter
@@ -61,6 +76,7 @@ const genereteLetter = () => {
       const spanEl = document.createElement('span');
       spanEl.setAttribute('class', wordClassList);
       spanEl.innerText = `${word}`;
+      spanEl.addEventListener('click', (event) => changeStyle(event));
       generatedLetter.appendChild(spanEl);
     });
   }
