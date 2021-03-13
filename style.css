@@ -3,6 +3,19 @@
   padding: 0;
 }
 
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+p {
+  margin-top: 50px;
+}
+
 .newspaper {
   background-color: antiquewhite;
   font-family: Times New Roman, sans-serif;
@@ -35,7 +48,7 @@
 }
 
 .reallybig {
-  font: 40px;
+  font-size: 40px;
   padding: 15px;
 }
 
