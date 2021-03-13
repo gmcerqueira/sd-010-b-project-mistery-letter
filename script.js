@@ -3,6 +3,7 @@ const size = ['medium', 'big', 'reallybig'];
 const rotation = ['rotateleft', 'rotateright'];
 const inclination = ['skewleft', 'skewright'];
 const classTypes = [styles, size, rotation, inclination];
+let wordCount = 0;
 
 function numberOfClasses() {
   let numberOfStyleClasses = Math.ceil(Math.random() * 4);
@@ -60,9 +61,9 @@ function generateLetter() {
 
 function contador() {
   const words = splitText();
-  const number = words.length;
+  wordCount += words.length;
   const paragraph = document.getElementById('carta-contador');
-  paragraph.innerText = `Palavras: ${number}`;
+  paragraph.innerText = `Palavras: ${wordCount}`;
 }
 
 function validateInput() {
