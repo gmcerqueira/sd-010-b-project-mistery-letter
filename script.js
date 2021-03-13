@@ -58,6 +58,13 @@ function generateLetter() {
   }
 }
 
+function contador() {
+  const words = splitText();
+  const number = words.length;
+  const paragraph = document.getElementById('carta-contador');
+  paragraph.innerText = `Palavras: ${number}`;
+}
+
 function validateInput() {
   let textInput = document.getElementById('carta-texto').value;
   const parent = document.getElementById('carta-gerada');
@@ -66,6 +73,7 @@ function validateInput() {
     parent.innerText = 'Por favor, digite o conteúdo da carta.';
   } else {
     generateLetter();
+    contador();
   }
 }
 
