@@ -2,6 +2,7 @@ const styles = ['newspaper', 'magazine1', 'magazine2'];
 const size = ['medium', 'big', 'reallybig'];
 const rotation = ['rotateleft', 'rotateright'];
 const inclination = ['skewleft', 'skewright'];
+const classTypes = [styles, size, rotation, inclination];
 
 function numberOfClasses() {
   let numberOfStyleClasses = Math.ceil(Math.random() * 4);
@@ -10,7 +11,6 @@ function numberOfClasses() {
   }
   return numberOfStyleClasses;
 }
-console.log(numberOfClasses());
 
 function splitText() {
   const textInput = document.getElementById('carta-texto').value;
@@ -18,20 +18,46 @@ function splitText() {
   return textArray;
 }
 
+function classSwitch(index) {
+  const caseNumber = index;
+  if (caseNumber === 0) {
+    const classNumber = Math.floor(Math.random() * 3);
+    return classTypes[0][classNumber];
+  } if (caseNumber === 1) {
+    const classNumber = Math.floor(Math.random() * 3);
+    return classTypes[1][classNumber];
+  } if (caseNumber === 2) {
+    const classNumber = Math.floor(Math.random() * 2);
+    return classTypes[2][classNumber];
+  } if (caseNumber === 3) {
+    const classNumber = Math.floor(Math.random() * 2);
+    return classTypes[3][classNumber];
+  }
+}
+
 function chooseClass() {
-  const typeOfClass = numberOfClasses();
-  
+  const numberOfClassesToUse = numberOfClasses();
+  const classesArray = [];
+  console.log(`Number of classes: ${numberOfClassesToUse}`);
+  for (let index = 0; index < numberOfClassesToUse; index += 1) {
+    classesArray.push(classSwitch(index));
+  }
+  return classesArray;
 }
 
 function generateLetter() {
   const parent = document.getElementById('carta-gerada');
   const words = splitText();
-  for (let index = 0; index < words.length; index += 1) {
+  for (let index3 = 0; index3 < words.length; index3 += 1) {
     const span = document.createElement('span');
-    span.innerText = words[index];
+    const classesArray = chooseClass();
+    console.log(classesArray);
+    for (let index4 = 0; index4 < classesArray.length; index4 += 1) {
+      span.classList.add(classesArray[index4]);
+    }
+    span.innerText = words[index3];
     parent.appendChild(span);
   }
-
 }
 
 document.getElementById('criar-carta').addEventListener('click', generateLetter);
