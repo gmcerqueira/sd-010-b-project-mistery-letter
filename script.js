@@ -38,7 +38,6 @@ function classSwitch(index) {
 function chooseClass() {
   const numberOfClassesToUse = numberOfClasses();
   const classesArray = [];
-  console.log(`Number of classes: ${numberOfClassesToUse}`);
   for (let index = 0; index < numberOfClassesToUse; index += 1) {
     classesArray.push(classSwitch(index));
   }
@@ -51,7 +50,6 @@ function generateLetter() {
   for (let index3 = 0; index3 < words.length; index3 += 1) {
     const span = document.createElement('span');
     const classesArray = chooseClass();
-    console.log(classesArray);
     for (let index4 = 0; index4 < classesArray.length; index4 += 1) {
       span.classList.add(classesArray[index4]);
     }
@@ -60,4 +58,15 @@ function generateLetter() {
   }
 }
 
-document.getElementById('criar-carta').addEventListener('click', generateLetter);
+function validateInput() {
+  let textInput = document.getElementById('carta-texto').value;
+  const parent = document.getElementById('carta-gerada');
+  textInput = textInput.trim();
+  if (textInput === '') {
+    parent.innerText = 'Por favor, digite o conteúdo da carta.';
+  } else {
+    generateLetter();
+  }
+}
+
+document.getElementById('criar-carta').addEventListener('click', validateInput);
