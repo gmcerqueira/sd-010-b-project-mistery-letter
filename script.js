@@ -45,8 +45,15 @@ function chooseClass() {
   return classesArray;
 }
 
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+}
+
 function generateLetter() {
   const parent = document.getElementById('carta-gerada');
+  removeAllChildNodes(parent);
   const words = splitText();
   for (let index3 = 0; index3 < words.length; index3 += 1) {
     const span = document.createElement('span');
