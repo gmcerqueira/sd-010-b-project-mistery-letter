@@ -70,7 +70,7 @@ function contador() {
   const words = splitText();
   wordCount = words.length;
   const paragraph = document.getElementById('carta-contador');
-  paragraph.innerText = `Palavras: ${wordCount}`;
+  paragraph.innerText = `${wordCount}`;
 }
 
 function validateInput() {
