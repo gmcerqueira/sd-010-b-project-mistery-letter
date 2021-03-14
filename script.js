@@ -11,5 +11,5 @@ buttonCriarCarta.addEventListener('click', function() {
     span.innerText = spans[index];
     pCartaGerada.appendChild(span);
   }
-  inpCartaTexto.value = '';
+
 });
