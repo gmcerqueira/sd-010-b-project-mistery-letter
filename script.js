@@ -3,6 +3,10 @@ const button = document.getElementById('criar-carta');
 const paragraph = document.getElementById('carta-gerada');
 let arrayWords = [];
 
+function clearSpans() {
+  paragraph.innerHTML = '';
+}
+
 function pushWords() {
   let words = '';
   for (let x = 0; x <= input.value.length; x += 1) {
@@ -15,7 +19,7 @@ function pushWords() {
   }
 }
 
-function cleanArray() {
+function clearArray() {
   if (arrayWords.length > 0) {
     arrayWords = [];
     pushWords();
@@ -33,7 +37,8 @@ function insertWords() {
 
 function pressButton() {
   button.addEventListener('click', () => {
-    cleanArray();
+    clearSpans();
+    clearArray();
     insertWords();
   });
 }
