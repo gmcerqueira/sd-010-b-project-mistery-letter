@@ -3,20 +3,13 @@ let pCartaGerada = document.getElementById('carta-gerada');
 const buttonCriarCarta = document.getElementById('criar-carta');
 
 buttonCriarCarta.addEventListener('click', function() {
-    let text = inpCartaTexto.value;
-  text += ' ';
-  let word = '';
-  let cont = 0;
-
-    for (let index = 0; index < text.length; index += 1) {
-        word += text[index];
-      if (text[index]===' ') {
-        console.log(word);
-        let span = document.createElement('span');
-        span.setAttribute('id', cont += 1);
-        span.innerText = word;
-        pCartaGerada.appendChild(span);
-        word = '';
-      }
-    }
+  pCartaGerada.innerHTML = '';
+  let spans = [];
+  spans = inpCartaTexto.value.split(' ');
+  for (let index = 0; index < spans.length; index += 1) {
+    span = document.createElement('span');
+    span.innerText = spans[index];
+    pCartaGerada.appendChild(span);
+  }
+  inpCartaTexto.value = '';
 });
