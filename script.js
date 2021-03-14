@@ -35,11 +35,21 @@ function insertWords() {
   }
 }
 
+function classNewspaper() {
+  const createDiv = document.createElement('div');
+  paragraph.appendChild(createDiv);
+  createDiv.style.backgroundColor = 'rgb(250, 235, 215)';
+  createDiv.style.fontFamily = 'Times New Roman';
+  createDiv.style.fontWeight = '700';
+
+}
+
 function functionsButton() {
   if (input.value === '' || input.value === ' ') {
     paragraph.innerHTML = 'Por favor, digite o conteúdo da carta.';
   } else {
     clearSpans();
+    classNewspaper();
     clearArray();
     insertWords();
   }
