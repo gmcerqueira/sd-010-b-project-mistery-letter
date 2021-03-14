@@ -2,6 +2,19 @@ const input = document.getElementById('carta-texto');
 const button = document.getElementById('criar-carta');
 const paragraph = document.getElementById('carta-gerada');
 let arrayWords = [];
+let arrayEstilo = ['newspaper', 'magazine1', 'magazine2'];
+let arrayTamanho = ['medium', 'big', 'reallybig'];
+let arrayRotacao = ['rotateleft', 'rotateright'];
+let arrayInclinacao = ['skewleft', 'skewright'];
+let storeRandomClass = '';
+
+function numberBetween0And3() {
+  return (Math.floor(Math.random() * (2.999 - 0) - 0));
+}
+
+function numberBetween0And2() {
+  return (Math.floor(Math.random() * (1.999 - 0) - 0));
+}
 
 function clearSpans() {
   paragraph.innerHTML = '';
@@ -28,10 +41,21 @@ function clearArray() {
   }
 }
 
+function chooseClasses() {
+  storeRandomClass = '';
+  storeRandomClass = arrayEstilo[numberBetween0And3()];
+  storeRandomClass += ' ' + arrayTamanho[numberBetween0And3()];
+  storeRandomClass += ' ' + arrayRotacao[numberBetween0And2()];
+  storeRandomClass += ' ' + arrayInclinacao[numberBetween0And2()];
+  return(storeRandomClass);
+}
+chooseClasses();
+
 function insertWords() {
   for (let counter = 0; counter < arrayWords.length; counter += 1) {
     paragraph.appendChild(document.createElement('span'));
     paragraph.lastChild.innerText = arrayWords[counter];
+    paragraph.lastChild.className = chooseClasses();
   }
 }
 
