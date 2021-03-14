@@ -1,6 +1,7 @@
 const input = document.getElementById('carta-texto');
 const button = document.getElementById('criar-carta');
 const paragraph = document.getElementById('carta-gerada');
+const counterWords = document.getElementById('carta-contador');
 let arrayWords = [];
 let arrayEstilo = ['newspaper', 'magazine1', 'magazine2'];
 let arrayTamanho = ['medium', 'big', 'reallybig'];
@@ -49,7 +50,6 @@ function chooseClasses() {
   storeRandomClass += ' ' + arrayInclinacao[numberBetween0And2()];
   return(storeRandomClass);
 }
-chooseClasses();
 
 function insertWords() {
   for (let counter = 0; counter < arrayWords.length; counter += 1) {
@@ -59,6 +59,10 @@ function insertWords() {
   }
 }
 
+function counterSpan() {
+  counterWords.innerText = document.getElementsByTagName('span').length;
+}
+
 function functionsButton() {
   if (input.value === '' || input.value === ' ') {
     paragraph.innerHTML = 'Por favor, digite o conteúdo da carta.';
@@ -66,6 +70,7 @@ function functionsButton() {
     clearSpans();
     clearArray();
     insertWords();
+    counterSpan()
   }
 }
 
