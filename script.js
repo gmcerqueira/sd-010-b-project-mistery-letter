@@ -3,10 +3,10 @@ const button = document.getElementById('criar-carta');
 const paragraph = document.getElementById('carta-gerada');
 const counterWords = document.getElementById('carta-contador');
 let arrayWords = [];
-let arrayEstilo = ['newspaper', 'magazine1', 'magazine2'];
-let arrayTamanho = ['medium', 'big', 'reallybig'];
-let arrayRotacao = ['rotateleft', 'rotateright'];
-let arrayInclinacao = ['skewleft', 'skewright'];
+const arrayEstilo = ['newspaper', 'magazine1', 'magazine2'];
+const arrayTamanho = ['medium', 'big', 'reallybig'];
+const arrayRotacao = ['rotateleft', 'rotateright'];
+const arrayInclinacao = ['skewleft', 'skewright'];
 let storeRandomClass = '';
 
 function numberBetween0And3() {
@@ -45,10 +45,10 @@ function clearArray() {
 function chooseClasses() {
   storeRandomClass = '';
   storeRandomClass = arrayEstilo[numberBetween0And3()];
-  storeRandomClass += ' ' + arrayTamanho[numberBetween0And3()];
-  storeRandomClass += ' ' + arrayRotacao[numberBetween0And2()];
-  storeRandomClass += ' ' + arrayInclinacao[numberBetween0And2()];
-  return(storeRandomClass);
+  storeRandomClass += ` ${arrayTamanho[numberBetween0And3()]}`;
+  storeRandomClass += ` ${arrayRotacao[numberBetween0And2()]}`;
+  storeRandomClass += ` ${arrayInclinacao[numberBetween0And2()]}`;
+  return (storeRandomClass);
 }
 
 function insertWords() {
@@ -70,7 +70,7 @@ function functionsButton() {
     clearSpans();
     clearArray();
     insertWords();
-    counterSpan()
+    counterSpan();
   }
 }
 
