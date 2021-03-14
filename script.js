@@ -35,11 +35,19 @@ function insertWords() {
   }
 }
 
-function pressButton() {
-  button.addEventListener('click', () => {
+function functionsButton() {
+  if (input.value === '' || input.value === ' ') {
+    paragraph.innerHTML = 'Por favor, digite o conteúdo da carta.';
+  } else {
     clearSpans();
     clearArray();
     insertWords();
+  }
+}
+
+function pressButton() {
+  button.addEventListener('click', () => {
+    functionsButton();
   });
 }
 
