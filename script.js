@@ -86,3 +86,12 @@ function validateInput() {
 }
 
 document.getElementById('criar-carta').addEventListener('click', validateInput);
+
+document.getElementById('carta-gerada').addEventListener('click', (event) => {
+  const span = event.target;
+  span.className = '';
+  const classesArray = chooseClass();
+  for (let index4 = 0; index4 < classesArray.length; index4 += 1) {
+    span.classList.add(classesArray[index4]);
+  }
+});
