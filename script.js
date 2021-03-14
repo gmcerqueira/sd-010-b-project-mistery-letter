@@ -40,7 +40,6 @@ function functionsButton() {
     paragraph.innerHTML = 'Por favor, digite o conteúdo da carta.';
   } else {
     clearSpans();
-    classNewspaper();
     clearArray();
     insertWords();
   }
