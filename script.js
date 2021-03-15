@@ -5,21 +5,23 @@ const buttonCriarCarta = document.getElementById('criar-carta');
 buttonCriarCarta.addEventListener('click', function() {
   function spaceWhiteOrEmpty(input) {
     let cont = 1;
-    let messege1 = null;
-    let messege2 = null;
+    let messege = null;
    for (let i = 0; i < input.length; i += 1) {
        if(input[i] === ' '){
            cont += 1;
            if(cont === input.length) {
-             messege1 = true
+             messege = true
            }
        }
    }
+   if (input === ' ') {
+     messege = true;
+   }
    if (input === '') {
-       messege2 = true;
+       messege = true;
    }
 
-   if (messege1 || messege2) {
+   if (messege) {
      return true;
    }
   }
