@@ -13,7 +13,7 @@ btnGerarCarta.addEventListener('click', () => {
   removeSpan();
   const palavrasSeparadas = inputText.value.split(' ');
   for (let index = 0; index < palavrasSeparadas.length; index += 1) {
-    if (palavrasSeparadas[0] !== ' ' && inputText.value !== '') {
+    if (palavrasSeparadas[0] !== ' ' && palavrasSeparadas[0] !== '') {
       const spanResultado = document.createElement('span');
       spanResultado.innerHTML = palavrasSeparadas[index];
       paragrafoResultado.appendChild(spanResultado);
