@@ -2,6 +2,24 @@ let inpCartaTexto = document.getElementById('carta-texto');
 let pCartaGerada = document.getElementById('carta-gerada');
 const buttonCriarCarta = document.getElementById('criar-carta');
 
+const cartaContador = document.getElementById('carta-contador');
+
+function setClass() {
+  /* Estilo */
+  let styles = ['newspaper', 'magazine1', 'magazine2'];
+  /* Tamanho */
+  let sizes = ['medium', 'big', 'reallybig'];
+  /* Rotação */
+  let rotates = ['rotateleft', 'rotateright'];
+  /* Inclinação */
+  let inclis = ['skewleft', 'skewright']
+  indexStyles = Math.floor(Math.random()*2);
+  indexSizes = Math.floor(Math.random()*2);
+  indexRotates = Math.floor(Math.random()*1);
+  indexInclis = Math.floor(Math.random()*1);
+  return `${styles[indexStyles]} ${sizes[indexSizes]} ${rotates[indexRotates]} ${inclis[indexInclis]}`
+}
+
 buttonCriarCarta.addEventListener('click', function() {
   function spaceWhiteOrEmpty(input) {
     let cont = 1;
@@ -31,9 +49,11 @@ buttonCriarCarta.addEventListener('click', function() {
   } else {
     let spans = [];
     spans = inpCartaTexto.value.split(' ');
+    cartaContador.innerText = spans.length;
     for (let index = 0; index < spans.length; index += 1) {
       span = document.createElement('span');
       span.innerText = spans[index];
+      span.className = setClass();
       pCartaGerada.appendChild(span);
     }
 }
