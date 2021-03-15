@@ -17,7 +17,8 @@ function setClass() {
   const indexSizes = Math.floor(Math.random() * 2);
   const indexRotates = Math.floor(Math.random() * 1);
   const indexInclis = Math.floor(Math.random() * 1);
-  return `${styles[indexStyles]} ${sizes[indexSizes]} ${rotates[indexRotates]} ${inclis[indexInclis]}`;
+  return `${styles[indexStyles]} 
+  ${sizes[indexSizes]} ${rotates[indexRotates]} ${inclis[indexInclis]}`;
 }
 
 function verifyWhiteSpaces(input) {
