@@ -1,104 +1,98 @@
-function eraseLetter() {
-    const letterContainer = document.getElementById('carta-gerada');
-    letterContainer.innerText = '';
+const styles = ['newspaper', 'magazine1', 'magazine2'];
+const size = ['medium', 'big', 'reallybig'];
+const rotation = ['rotateleft', 'rotateright'];
+const inclination = ['skewleft', 'skewright'];
+const classTypes = [styles, size, rotation, inclination];
+let wordCount = 0;
+
+function numberOfClasses() {
+  let numberOfStyleClasses = Math.ceil(Math.random() * 4);
+  while (numberOfStyleClasses === 1) {
+    numberOfStyleClasses = Math.ceil(Math.random() * 4);
   }
-  /*
-  * Recorri ao seguinte site pro entendimento da função test().
-  * Link: https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/regular-expressions/using-the-test-method
-  */
-  
-  function isEmptyInput(txtInput) {
-    if (txtInput === '') {
-      return true;
+  return numberOfStyleClasses;
+}
+
+function splitText() {
+  const textInput = document.getElementById('carta-texto').value;
+  const textArray = textInput.split(' ');
+  return textArray;
+}
+
+function classSwitch(index) {
+  const caseNumber = index;
+  if (caseNumber === 0) {
+    const classNumber = Math.floor(Math.random() * 3);
+    return classTypes[0][classNumber];
+  } if (caseNumber === 1) {
+    const classNumber = Math.floor(Math.random() * 3);
+    return classTypes[1][classNumber];
+  } if (caseNumber === 2) {
+    const classNumber = Math.floor(Math.random() * 2);
+    return classTypes[2][classNumber];
+  } if (caseNumber === 3) {
+    const classNumber = Math.floor(Math.random() * 2);
+    return classTypes[3][classNumber];
+  }
+}
+
+function chooseClass() {
+  const numberOfClassesToUse = numberOfClasses();
+  const classesArray = [];
+  for (let index = 0; index < numberOfClassesToUse; index += 1) {
+    classesArray.push(classSwitch(index));
+  }
+  return classesArray;
+}
+
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+    parent.removeChild(parent.firstChild);
+  }
+}
+
+function generateLetter() {
+  const parent = document.getElementById('carta-gerada');
+  removeAllChildNodes(parent);
+  const words = splitText();
+  for (let index3 = 0; index3 < words.length; index3 += 1) {
+    const span = document.createElement('span');
+    const classesArray = chooseClass();
+    for (let index4 = 0; index4 < classesArray.length; index4 += 1) {
+      span.classList.add(classesArray[index4]);
     }
-    const testRegex = /^\s+/;
-    return testRegex.test(txtInput);
+    span.innerText = words[index3];
+    parent.appendChild(span);
   }
-  
-  /** Source: https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Math/random */
-  function getRandomInt(min, max) {
-    const intMin = Math.ceil(min);
-    const intMax = Math.floor(max);
-    return Math.floor(Math.random() * (intMax - intMin)) + intMin;
+}
+
+function contador() {
+  const words = splitText();
+  wordCount = words.length;
+  const paragraph = document.getElementById('carta-contador');
+  paragraph.innerText = `${wordCount}`;
+}
+
+function validateInput() {
+  let textInput = document.getElementById('carta-texto').value;
+  const parent = document.getElementById('carta-gerada');
+  textInput = textInput.trim();
+  if (textInput === '') {
+    parent.innerText = 'Por favor, digite o conteúdo da carta.';
+  } else {
+    generateLetter();
+    contador();
   }
-  
-  function pickGroups(obj) {
-    const classesGroups = Object.keys(obj);
-    const amountToBeSubtracted = getRandomInt(0, 3);
-    if (amountToBeSubtracted === 1) {
-      const randomIndex = getRandomInt(0, 3);
-      classesGroups.splice(randomIndex, 1);
-    } else {
-      return classesGroups;
-    }
-    return classesGroups;
-    /* else if (amount === 2) {
-      const randomIndex = getRandomInt(0, 3);
-      classesGroups.splice(randomIndex, 2);
-    }  */
+}
+
+document.getElementById('criar-carta').addEventListener('click', validateInput);
+
+document.getElementById('carta-gerada').addEventListener('click', (event) => {
+  const span = event.target;
+  span.className = '';
+  const classesArray = chooseClass();
+  for (let index4 = 0; index4 < classesArray.length; index4 += 1) {
+    span.classList.add(classesArray[index4]);
   }
-  
-  function drawClasses() {
-    const wordSpan = document.createElement('span');
-    const spanClasses = {
-      styleGroup: ['newspaper', 'magazine1', 'magazine2'],
-      sizeGroup: ['medium', 'big', 'reallybig'],
-      rotationAndInclinationGroup: ['rotateleft', 'rotateright', 'skewleft', 'skewright'],
-    };
-    const drawnGroups = pickGroups(spanClasses);
-    for (let index = 0; index < drawnGroups.length; index += 1) {
-      const currentGroup = drawnGroups[index];
-      const randomIndex = getRandomInt(0, spanClasses[currentGroup].length);
-      const drawnClass = spanClasses[currentGroup][randomIndex];
-      wordSpan.classList.add(drawnClass);
-    }
-    return wordSpan;
-  }
-  
-  function createLetter() {
-    eraseLetter();
-    const txtLetter = document.getElementById('carta-texto').value;
-    const letterContainer = document.getElementById('carta-gerada');
-    const counterLetter = document.getElementById('carta-contador');
-    if (!isEmptyInput(txtLetter)) {
-      const wordSplited = txtLetter.split(' ');
-      for (let index = 0; index < wordSplited.length; index += 1) {
-        const wordSpan = drawClasses();
-        wordSpan.innerText = wordSplited[index];
-        letterContainer.appendChild(wordSpan);
-      }
-      counterLetter.innerText = `${wordSplited.length}`;
-    } else {
-      letterContainer.innerText = 'Por favor, digite o conteúdo da carta.';
-    }
-  }
-  
-  function addEventCreateLetterBtn() {
-    const btnCreateLetter = document.getElementById('criar-carta');
-    btnCreateLetter.addEventListener('click', createLetter);
-  }
-  addEventCreateLetterBtn();
-  
-  function changeClass(event) {
-    const spanClasses = {
-      styleGroup: ['newspaper', 'magazine1', 'magazine2'],
-      sizeGroup: ['medium', 'big', 'reallybig'],
-      rotationAndInclinationGroup: ['rotateleft', 'rotateright', 'skewleft', 'skewright'],
-    };
-    const className = [];
-    const drawnGroups = pickGroups(spanClasses);
-    for (let index = 0; index < drawnGroups.length; index += 1) {
-      const currentGroup = drawnGroups[index];
-      const randomIndex = getRandomInt(0, spanClasses[currentGroup].length);
-      const drawnClass = spanClasses[currentGroup][randomIndex];
-      className.push(drawnClass);
-    }
-    event.target.className = className.join(' ');
-  }
-  
-  function addEventSpan() {
-    const letterContainer = document.getElementById('carta-gerada');
-    letterContainer.addEventListener('click', changeClass);
-  }
-  addEventSpan();
+});
   
