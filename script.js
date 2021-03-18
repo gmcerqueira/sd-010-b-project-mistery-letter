@@ -1,8 +1,8 @@
 const classes = {
-    estilo: ['null','newspaper', 'magazine1', 'magazine2'],
-    tamanho: ['null','medium', 'big', 'reallybig'],
-    rotação: ['null','rotateleft', 'rotateright'],
-    inclinação:['null','skewleft', 'skewright']
+    estilo: ['newspaper', 'magazine1', 'magazine2'],
+    tamanho: ['medium', 'big', 'reallybig'],
+    rotação: ['rotateleft', 'rotateright'],
+    inclinação:['skewleft', 'skewright']
 }
 
 function createLetter() {
@@ -18,10 +18,10 @@ function createLetter() {
       for (let palavra = 0; palavra < array.length; palavra += 1) {
         const span = document.createElement('span');
         span.innerText = array[palavra];
-        span.classList.add(classes.estilo[Math.floor(Math.random() * 3.9)]);
-        span.classList.add(classes.tamanho[Math.floor(Math.random() * 3.9)]);
-        span.classList.add(classes.rotação[Math.floor(Math.random() * 2.9)]);
-        span.classList.add(classes.inclinação[Math.floor(Math.random() * 2.9)]);
+        span.classList.add(classes.estilo[Math.floor(Math.random() * 2.9)]);
+        span.classList.add(classes.tamanho[Math.floor(Math.random() * 2.9)]);
+        span.classList.add(classes.rotação[Math.floor(Math.random() * 1.9)]);
+        span.classList.add(classes.inclinação[Math.floor(Math.random() * 1.9)]);
         letter.appendChild(span);
       }
       countWords();
